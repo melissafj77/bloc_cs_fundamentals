@@ -1,0 +1,53 @@
+Short Answer
+
+1.Why do programmers use pseudocode?
+    A: Is at the end of the day an  aid to help programmers sort trough the logic of an algorithm without using a specific language syntax.
+
+2.If you run pseudocode on your computer what would happen?
+    A: either nothing or an error, since is not a programming language.
+
+Programming Assignment
+
+Write the following algorithms in pseudocode:
+
+1. Create a function that takes two numbers and prints out the greater number.
+    
+    return largest
+        if number 1 not equal number 2
+            if number1 bigger than number2
+                return number1
+            else 
+                return number2
+        end if
+    end
+
+2. Create a function that prints out the numbers from 1 to 100.
+
+    print 1 to 100
+        for i start in 1 to 100 by 1
+            print i and go to new line
+        end for
+    end
+
+3. Create a function that searches for a specific entry in a phonebook.
+
+    entry in phone book
+
+        FOR phonebook entry starting at 0 index and less than phonebook length iterate through phonebook
+            IF entry is equal to phonebook item
+	            PRINT ‘Entry was found! + phone number’
+            END
+            IF NOT entry
+	            PRINT ‘entry +  is not listed!’
+            END IF
+        END FOR
+    END
+4. Using the pseudocode you wrote for the previous question, implement it in any computer language of your choice.
+
+var phonebook = [{'name':'carla', 'number':'832-555-5555'}, {'name':'james', 'number':'713-555-5555'}, {'name':'damian', 'number':'832-555-5555'}];
+    
+    function phoneSearch(entry){
+        for(var i = 0; i < phonebook.length; i++){
+		    return entry.toLowerCase() === phonebook[i].name?`Entry was found! ${phonebook[i].number}`:`${entry} Is not listed!`;
+        }
+    }
