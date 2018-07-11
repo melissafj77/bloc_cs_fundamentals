@@ -1,0 +1,59 @@
+Exercises
+
+1. A line of people at an amusement park ride.
+
+The line is composed of members, represented as strings.
+There is a front to the line, as well as a back.
+When someone enters the line, place them at the end.
+People may leave the line whenever they see fit, and those behind them take their place.
+Given the above real-world information, use an array data structure to code the following solution.
+
+a) Use an array input: ["Vivian", "Ava", "Josh", "Patrick", "Mike"]
+b) Insert a new person, "Mary" at the end of the line. In other words, you should insert Mary after Mike.
+c) Find a person in line named "Josh." This function should return the position of 2 in the array, (recall that arrays are 0-based).
+d) Find a person in line named "Emily." What should your function return if it does not find the item in the array?
+e) What if Ava wants to allow a friend, "Melissa", to cut in line in front of her? How would you code this so Melissa appears before Ava?
+f) If Patrick wants to leave the line, how would you delete him from the array?
+
+var list = ["Vivian", "Ava", "Josh", "Patrick", "Mike"];
+
+    function insertNew (name){
+        list = list.push(name);
+        console.log(list);
+        return list;
+    }
+
+    function findPerson(name){
+        for (let i = 0; i < list.length; i++){
+           if(list[i] === name?){
+               return `${name} is number ${i} in line.`;
+           }else{
+               return `${name} is not in line for this ride.`;
+            }
+        }
+    }
+
+    function cutInLine(name){
+        console.log(`${names}  Beware! A line cutter is in your midst!`);
+        return list.splice(1, 0, name);
+    }
+
+    function leaveLine(name){
+        let index = list.indexOf(name);
+        console.log(`${name} left the line!`);
+        return list.splice(index, 1)
+    }
+
+addPerson("Mary");
+findPerson("Josh");
+findPerson("Emily");
+cutInLine("Melissa");
+leaveLine("Patrick");
+
+2. Provide another real-world example that you can model using a data structure.
+
+A: A school grading system grades and  GPA. as well as their attendance record and if they drop out of school or remain enrolled, etc. 
+
+3. How would your data structure allow developers to access and manipulate the data?
+
+The constant shifting of grades and ranking of students needs to be manipulated, as well as attendance records will need not only arrays but objects to be sorted by class and class difficulty if they are level AP or Honors classes. etc the daily attendance will need to be recorded and depending on amount of absent days students might not be allowed to graduate and will be placed at the end of the ranking ETC.
