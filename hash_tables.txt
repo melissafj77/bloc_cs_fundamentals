@@ -1,0 +1,154 @@
+1.What is a hash table?
+
+Is a type of array of sorted elements linked to a unique key that identifies them.
+
+2.What is hashing?
+
+Is the process of converting the string key into numeric indexes, since arrays can only be indexed by numbers.
+
+3.How does a hash table store data?
+
+Hash tables take in a key to associate with input data, converts the key into a hash code, and stores that key with its associated values. Each key can reference multiple values, database is also called collision when 2 values are assigned the same key some languages handle collision like ruby or javaScript. also a value can be an object or different data that is related. For example, a company could have a customer info hash table in which the keys are the customer’s phone numbers and the values associated with each key could be the database’ names, addresses, and maybe even whether they are in a rewards program with that company or not.
+
+4. How are hash tables and objects different?
+
+When using a hash table, data containing consistently formatted values are stored with identifiers. Objects can store a key value pairs.
+
+5. Determine whether you would use a hash table or an object to store each of the following pieces of data:
+
+-A list of pets and their unique names.
+
+Hash table
+
+-The name, age, and the birthday of your best friend.
+
+Object
+
+-The name and location of every company in a given city.
+
+Hash table
+
+
+-All of the books checked out from a library by a particular individual.
+
+Hash table
+
+-The primary and secondary phone numbers for a contact.
+
+Object
+
+6. Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up database using their phone numbers. Store database information in a hash table.
+
+
+function addCustomerInfo() {
+  var customer = []
+  var name = prompt("Enter the customer full name");
+  var address = prompt("Enter customer address");
+  var phone = prompt("Enter customer phone number");
+  customer.push(phone, name, address); 
+  }
+
+
+function hash(key) {
+  var hash = 0;
+  for(var i = 0; i < key.length; i++){
+    hash += key.charCodeAt(i);
+  }
+  return hash % 2069;  
+}
+
+function hashTable (){
+  var list = [];
+  
+  this.set = function(phone, name, customerAddress){
+    var index = hash(phone);
+    if (list[index] === undefined) {
+      list[index] = [ [phone, name, customerAddress] ];
+    }
+  };
+  
+  this.get = function(phone){
+    var index = hash(phone);
+    for(var i = 0; i < list[index].length; i++) {
+      return list[index][i][0] === phone ?`${list[index][i][0]},  ${list[index][i][1]},  ${list[index][i][2]}`:`Phone Number is not indexed`
+    } 
+  };
+}
+
+
+//for test
+
+
+var customers = new hashTable();
+customers.set ("555-867-5309", "Clara", "999 somewhere");
+
+console.log(customers.get(555-867-5309));
+
+
+
+7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
+inventory = new Map();
+
+function handleAddNewItem() {
+  var itemName = prompt("What is the item name?");
+  var itemQuantity = prompt("How many are in stock?");
+  const item = {
+    name: itemName,
+    quantity: parseInt(itemQuantity)
+  }
+  inventory.set(itemName, item);
+}
+
+function handleIncreaseItemQuantity() {
+  var itemName = prompt("What is the item name?");
+  var additionalItems = prompt("How many additional" + itemName + "?");
+  var updItem = inventory.get(itemName);
+  updItem.quantity += parseInt(additionalItems);
+  inventory.set(itemName, updItem);
+}
+
+
+
+8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
+
+
+function hash(key, keyB){
+key +=keyB; 
+	var hash = 0;
+  for(var i = 0; i < key.length; i++){
+    hash += key.charCodeAt(i);
+  }
+
+  return hash % 2069;
+}
+
+function publisherDateHashTable (){
+  var list = [];
+  var askPublisher= prompt("Enter publisher");
+  var askDate = prompt("Enter publication Date");
+  this.set = function(publisher, date, publicationName, article){
+    var index = hash(publisher, date);
+    if (list[index] === undefined) {
+      list[index] = [ [publisher, date, publicationName, article] ];
+    }
+  };
+  
+  this.get = function(){
+    var index = hash(askPublisher, askDate);
+    for(var i = 0; i < list[index].length; i++) {
+      return list[index][i][0] === askPublisher && list[index][i][1]===askDate?`Publisher: ${list[index][i][0]}, Year: ${list[index][i][1]}, Publication: ${list[index][i][2]}, Article: ${list[index][i][3]}`:"Not available";
+    }
+  };
+}
+
+//test
+var newspaper = new publisherDateHashTable();
+
+
+newspaper.set("house", "2001", "paper", "The life of cats");
+newspaper.set("house", "2002", "paper", "The life of dogs");
+newspaper.set("parker", "2017", "New York Times", "turtle");
+newspaper.set("usa today", "2005", "USA Today", "foo foo foo");
+newspaper.set("parker", "2016", "New York Times", "monkeys");
+
+console.log(newspaper.get());
