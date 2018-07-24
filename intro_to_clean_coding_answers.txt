@@ -6,7 +6,7 @@ The first reason is that we do not write code for ourselves or the machines, we 
 
 2. Read this article about Toyota and their use of bad code. Although you may not yet understand all of the topics discussed, think about another commonly used object that relies on computers and explain what would happen if the code was not created to an acceptable standard.
 
-
+Medical services, not only for record keeping of patient's history and reactions to medications, but in hospital during treatment, charts and dosages, if a calculation in a code is wrong with the current level of trust on the correctnes of computations i medical equipment one mistake can be extreme dangerous or fatal 
 
 3. Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
 
@@ -47,14 +47,7 @@ FUNCTION calcPercent(sum, total)
  PRINT percentage
 END FUNCTION
 
-    First the math is wrong it should be  sum/100 * total to calculate the percentage of a number 
-    Second the variable names dont make sense should be amount number value ETC  total should be percentage or something easily recognizable
-
-    FUNCTION calcPercentage(num/per)
-        PRINT num/100 * per
-    END FUNCTION
-
-
+  Yes is clean code. 
 5. Using pseudocode, refactor the code for the following examples using the principles you have learned in this checkpoint.
 
     a. The following function prints the subtotal of a customer's transaction and receives
@@ -161,7 +154,7 @@ Programming Questions
     function duplicateElements(arr){
         arr = arr.sort();
         for(var i = 0; i < arr.length; i++){
-            return arr[i] === arr[i +1]? true:false;
+            return arr[i+1] === arr[i];
         } 
     }
 
@@ -171,5 +164,5 @@ Extra Credit
     function isAnagram(stringOne, stringTwo){
         stringOne = stringOne.split('').sort().join('');
         stringTwo = stringTwo.split('').sort().join('');
-        return stringOne===stringTwo ? true:false;
+        return stringOne===stringTwo;
     }
