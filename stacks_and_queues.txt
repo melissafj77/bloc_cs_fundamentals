@@ -1,0 +1,58 @@
+Exercises
+
+
+1. What is the main difference between a stack and a queue?
+    A: The order is processed in a stack LIFO and a queue as FIFO
+
+2. What are the similarities between stacks and queues?
+    A: They both are data structures that handle requests and manipulate the order data is accessed.
+
+3. Imagine you are an engineer tasked with implementing the UNDO and REDO options in a word processor such as Microsoft Word. Which data structure would you use for each option and why?
+    A: For this I would use a stack as it would remove the last letter,  and will store them in an array, then for redo would use a stack again  since this require FIFO 
+Programming Questions
+
+
+You may program the following question in any language of your choice. Before you begin coding, write out a plan as to how you will solve the question.
+
+1. Given a string, reverse it using a stack. For example, the string "Bloc!" should be converted to "!colB".
+    A: store the characters of the string in an array/stack one by one, then pop them  to a new string. this will start the string with the last character.
+
+    var reverse = (string)=>{
+        let stack = [];
+        for (var i = 0; i<string.length; i++){
+         stack.push(string.charAt(i));
+        }
+		while (!stack.length == 0){
+		newString +=stack.pop();
+        }
+	    return newString;
+    }
+
+
+2. Implement the delete functionality of a stack using one queue. Make a FIFO data structure mirror the functionality of a LIFO data structure.
+
+    To delete an item, take all of the elements in the queue one at a time and put them at the end of the queue, except for the last one which should be deleted and returned.
+
+CLASS Stack
+ FUNCTION pop(queue)
+    SET the length of the queue to var length 
+    LOOP through the array from array[0] to array[length-1]
+    SET temp to the last element array[length-1
+    REMOVE temp
+ END FUNCTION
+END CLASS
+
+
+3. Fill in the methods for the following Queue class so that it will work as expected (FIFO).
+
+CLASS QUEUE
+ FUNCTION enqueue(element)
+   SET array[length] = element
+ END FUNCTION
+
+ FUNCTION dequeue
+   SET array[length-1] to var dequeueValue
+   SET array[length-1] to NULL
+   RETURN dequeueValue
+ END FUNCTION
+END CLASS
