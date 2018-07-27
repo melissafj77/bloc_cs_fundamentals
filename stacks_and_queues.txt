@@ -19,11 +19,12 @@ You may program the following question in any language of your choice. Before yo
 
     var reverse = (string)=>{
         let stack = [];
+        let newString = '';
         for (var i = 0; i<string.length; i++){
-         stack.push(string.charAt(i));
+            stack.push(string.charAt(i));
         }
 		while (!stack.length == 0){
-		newString +=stack.pop();
+		    newString +=stack.pop();
         }
 	    return newString;
     }
