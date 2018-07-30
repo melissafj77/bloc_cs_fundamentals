@@ -1,0 +1,109 @@
+!. What are some pros and cons of using linked lists instead of arrays?
+A:pros are that linked list use dynamic allocation, so the size of the linkedlist doesn't need to be known in advance time wise arrays are more expensive when it comes to iterating inserting elements and searches because the whole array needs to be manipulated. some cons are actualy that because we have to go trough the list in order some nodes might be time consuming to access lists can be larger than aarays.
+
+
+
+2. Come up with a real world example of a linked list.
+
+A: I think a good real world example would be an elevator because to get to a specific floor you have to go trough evefry previous one  in order you cant skip or just teleport to the desired floor.
+    anoter would be the history on a web browser and how it stores one page after another and you can go back in order only.
+
+###Programming Questions
+
+You may program the following questions in any language of your choice (JavaScript, pseudocode, etc.).
+
+Before beginning to code, write out a plan explaining how to solve the question.
+
+!. The Linked List push function should take a value, create a node, and add it to the end of a list. Below is a push function for a singly linked list. However, there is something wrong with it. Find the bug and fix the code.
+
+LinkedList.prototype.push = function(element) {
+ SET node = {
+   value: element,
+   next: null
+ }
+
+ IF the head node does not exist
+    THEN SET head to node
+ ELSE
+    SET current node to head
+    WHILE current.next is not null
+        SET current to current.next
+    END WHILE
+    SET current.next to node
+ }
+}
+
+
+2. Given an unsorted singly linked list, remove all duplicates from the linked list.
+Example
+Input: a -> c -> d -> d -> a
+Output: a -> c -> d
+
+create the class and  then the fuction to remove duplicated values
+
+class LinkedList {
+    constructor(...value) {
+        this.head = null;
+        this.length = 0;
+        this.addToHead(...value);
+    }
+
+    _addSingleItemToHead(value) {
+        const newNode = { value };
+        newNode.next = this.head;
+        this.head = newNode;
+        this.length++;
+    }    
+
+    addToHead(...values) {
+        values.forEach(value => this._addSingleItemToHead(value));
+        return this;
+    }
+
+    
+    removeDuplicates() {
+    if (this.head === null || this.head.next === null) {
+      return;
+    }
+    var testValues=[];
+    testValues.push(this.head.value);
+    var refNode = this.head;
+    while (refNode.next !== null && refNode.next.next !== null) {
+      if (testValues.includes(refNode.next.value)) {
+        refNode.next = refNode.next.next;
+        this.length--;
+      } else {
+        testValues.push(refNode.next.value);
+        refNode = refNode.next;
+      }
+    }
+    if (testValues.includes(refNode.next.value)) {
+      refNode.next = null;
+      this.length--;
+    }
+  }
+}
+    
+
+
+3. Given an unsorted singly linked list, reverse it.
+Example
+Input: a -> b -> c -> d
+Output: d -> c -> b -> a
+
+ we can do it by reversing the head
+
+
+function reverseLinkedList(linkedlist) {
+  var node = linkedlist;
+  var previous = null;
+
+  while(node) {
+    var save = node.next;
+    node.next = previous;
+    previous = node;
+    node = save;
+  }
+  return previous;
+}   
+linkedlist = reverseLinkedList(linkedlist);
