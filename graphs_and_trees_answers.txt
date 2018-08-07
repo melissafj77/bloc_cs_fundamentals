@@ -1,0 +1,102 @@
+1. What is a binary tree and what makes it unique to other trees?
+
+    A: Is a Data structure made of nodes that contain a left and a right pointers,  the first node is the root node and each sbsequent one is called a child node, an ordered binary tree  is where the nodes are arranged in order: for each node all elements to the left are less and to the right are greater than the node. 
+
+2. What is a heuristic?
+
+    A: is an approach to problems that does not follow any perfect logic or rational but is good enough to achieve a desired result that is  sufficient for the problem. an estimation or rounding, mostly used when case by case analysis would be impractical.
+
+3. What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+    A:  Weather forecasting for example many times uses a heuristic model that although adapts to minute changes, can only manage an educated guess on the possible path of a hurricane or storm.
+ 
+4. What is the difference between a depth-first search and a breadth-first search?
+
+    A: a depth-first search can be seen as vertical down the branches of a tree before moving to the next branch, whereas a breath-first search looks at all branches at the same level before moving down and again searching every branch on that level.
+ 
+5. Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+
+    A: Is a graph that connects each node as a two-way street, without forming any loops, and that doesn't assign the cost of travel
+between nodes.
+ 
+6. What kind of graph is a binary search tree?
+
+    A: A-cyclic, directed, unweighted.
+ 
+Programming Questions
+
+1. Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+
+Example: The value 10 exists in the tree. The value 23 does not exist in the tree.
+
+function find(node) {
+  var current = this.root;
+    if(current.value === node){
+        return current;
+    }
+  while (current.value !== node) {
+    if (node < current.value) {
+      current = current.left;
+    } else {
+      current = current.right;
+    }
+    if (current === null) {
+      return `${node} not found`;
+    }
+  }
+  return current;
+}
+
+
+
+2. Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+
+Example: The distance between the nodes 4 and 10 is 4. The distance between the nodes 8 and 10 is 1. The distance between the nodes 1 and 14 is 4.
+
+    to find the distance between two binary nodes you can use the following formula
+     Dist(n1, n2) = Dist(root, n1) + Dist(root, n2) - 2*Dist(root, lca)  it calculates the  sum of the distance from each node to the root node minus the distance from the root node to their local common ancestor
+     but is simpler to find the distance from each node to their lower common ancestor and add them. 
+
+
+function distance(node1, node2){
+var ancestor = commonAncestor(node1, node2);
+var depth1 = findDepth(ancestor, node1);
+var depth2 = findDepth(ancestor, node2);
+
+return depth1 + depth2;
+}
+
+// find lower common ancestor
+
+function commonAncestor(n1, n2){
+   var node = this.root
+   if(!root) return;
+   var val = node.value;
+   if(n1 == val || n2 ==val){
+     return node;
+   }
+   var left = commonAncestor(node.left, n1, n2);
+   var right = commonAncestor(node.right, n1, n2);
+   if(left && right){
+     return node;
+  }
+  return (left) ? left : right;
+}
+
+function findDepth(firstNode, endNode){
+    var countLeft = 0;
+    var countRight = 0;
+    if (firstNode == null  || endNode == null) {
+    return;
+    }
+    while(firstNode !== endNode){
+        if (firstNode.value > endNode){
+            firstNode = firstNode.left;
+            countLeft ++;
+        }else if(firstNode.value < endNode){
+            firstNode = firstNode.right;
+            countRight ++;
+        }
+    }
+    return countLeft + countRight;
+}
