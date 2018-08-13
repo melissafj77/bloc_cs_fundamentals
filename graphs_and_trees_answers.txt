@@ -25,28 +25,78 @@ between nodes.
  
 Programming Questions
 
-1. Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+1. Given a Binary Search Tree and a data, write a function that checks to see whether the data exists within the tree.
 
-Example: The value 10 exists in the tree. The value 23 does not exist in the tree.
+Example: The data 10 exists in the tree. The data 23 does not exist in the tree.
 
-function find(node) {
-  var current = this.root;
-    if(current.value === node){
-        return current;
+
+function Node(data) {
+  this.data = data;
+  this.left = null;
+  this.right = null;
+}
+
+function BinarySearchTree() {
+  this.root = null;
+}
+
+BinarySearchTree.prototype.add = function(data) {
+  var node = new Node(data);
+  if(!this.root) {
+    this.root = node;
+  } else {
+    var current = this.root;
+    while(current) {
+      if(node.data < current.data) {
+        if(!current.left) {
+          current.left = node;
+          break;
+        }
+        current = current.left;
+      } else if (node.data > current.data) {
+        if(!current.right) {
+          current.right = node;
+          break;
+        }
+        current = current.right;
+      } else {
+        break;
+      }
     }
-  while (current.value !== node) {
-    if (node < current.value) {
+  }
+};
+BinarySearchTree.prototype.find = function(data) {
+  var current = this.root;
+
+  while (current.data !== data) {
+    if (data < current.data) {
       current = current.left;
     } else {
       current = current.right;
     }
     if (current === null) {
-      return `${node} not found`;
+      return `${data} not found`;
     }
-  }
-  return current;
-}
+  } return `${data} found`'
+};
 
+
+// for testing
+
+const orchard = new BinarySearchTree();
+
+orchard.add(10);
+orchard.add(4);
+orchard.add(17);
+orchard.add(3);
+orchard.add(6);
+orchard.add(22);
+orchard.add(5);
+orchard.add(7);
+orchard.add(20);
+
+orchard.find(10);
+orchard.find(23);
 
 
 2. Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
@@ -58,45 +108,111 @@ Example: The distance between the nodes 4 and 10 is 4. The distance between the 
      but is simpler to find the distance from each node to their lower common ancestor and add them. 
 
 
-function distance(node1, node2){
-var ancestor = commonAncestor(node1, node2);
-var depth1 = findDepth(ancestor, node1);
-var depth2 = findDepth(ancestor, node2);
-
-return depth1 + depth2;
-}
-
-// find lower common ancestor
-
-function commonAncestor(n1, n2){
-   var node = this.root
-   if(!root) return;
-   var val = node.value;
-   if(n1 == val || n2 ==val){
-     return node;
-   }
-   var left = commonAncestor(node.left, n1, n2);
-   var right = commonAncestor(node.right, n1, n2);
-   if(left && right){
-     return node;
+class Node{
+  constructor(data) {
+    this.data = data;
+    this.left = null;
+    this.right = null;
   }
-  return (left) ? left : right;
 }
 
-function findDepth(firstNode, endNode){
-    var countLeft = 0;
-    var countRight = 0;
-    if (firstNode == null  || endNode == null) {
-    return;
-    }
-    while(firstNode !== endNode){
-        if (firstNode.value > endNode){
-            firstNode = firstNode.left;
-            countLeft ++;
-        }else if(firstNode.value < endNode){
-            firstNode = firstNode.right;
-            countRight ++;
-        }
-    }
-    return countLeft + countRight;
+class BinarySearchTree{
+  constructor() {
+    this.root = null;
 }
+  add(data) {
+    const node = this.root;
+    if (node === null) {
+      this.root = new Node(data);
+      return;
+    } else {
+      const searchTree = function(node) {
+        if (data < node.data) {
+          if (node.left === null) {
+            node.left = new Node(data);
+            return;
+          } else if (node.left !== null) {
+            return searchTree(node.left);
+          }
+        } else if (data > node.data) {
+          if (node.right === null) {
+            node.right = new Node(data);
+            return;
+          } else if (node.right !== null) {
+            return searchTree(node.right);
+          }
+        } else {
+          return null;
+        }
+      };
+      return searchTree(node);
+    }
+  }
+
+  find(value) {
+    var current = this.root;
+    while (current.data !== value) {
+      if (value < current.data) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+      if (current === null) {
+        return `${value} not found`;
+      }
+    }
+    if(current.data === value)
+      return `${value} found`;
+    
+  }
+
+  getDistance(node1, node2) {
+    var root = this.root;
+    var ancestor = LCA(root, node1, node2);
+    var depth1 = getDepth(ancestor, node1); 
+    var depth2 = getDepth(ancestor, node2); 
+  
+    function LCA(currentNode, node1, node2) {
+      if (currentNode == null)
+        return null;
+      if (currentNode.data == node1 || currentNode.data == node2)
+        return currentNode;
+      var left = LCA(currentNode.left, node1, node2); 
+      var right = LCA(currentNode.right, node1, node2); 
+      if(left != null && right != null)
+        return currentNode;
+      return left == null? right: left;
+      }
+
+    function getDepth(currentNode, targetNode) {
+      if (currentNode == null)
+        return -1;
+      if (currentNode.data == targetNode)
+        return 0;
+      var left = getDepth(currentNode.left, targetNode);
+      var right = getDepth(currentNode.right, targetNode);
+      if (left == -1 && right == -1)
+        return -1;
+      return left == -1? right + 1: left + 1;
+    }
+    return depth1 +  depth2;
+  }
+}
+
+// for testing
+
+const orchard = new BinarySearchTree();
+
+orchard.add(7);
+orchard.add(4);
+orchard.add(14);
+orchard.add(3);
+orchard.add(6);
+orchard.add(8);
+orchard.add(5);
+orchard.add(1);
+orchard.add(10);
+
+orchard.getDistance(8, 10);
+orchard.getDistance(4, 10);
+orchard.getDistance(1, 14);
