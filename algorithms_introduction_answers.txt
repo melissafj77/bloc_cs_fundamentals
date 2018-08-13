@@ -1,0 +1,76 @@
+1. Using proper pseudo-code, describe the following primitive algorithms:
+
+    Making coffee;
+        FUNCTION
+            IF coffee beans whole
+                ground coffee
+            END IF
+            ADD water to moka pot  water tank up to valve
+            ADD grounded coffee to filter basket
+            CLOSE moka pot
+            TURN stove on low 
+            PUT pot on stove
+            WHILE there is water in moka pot water tank
+                keep moka pot on stove
+            END WHILE
+            IF hear a hizzing bubbling sound
+                turn stove off
+            END IF
+            SERVE coffee
+            IF you like weak coffee
+                 add milk or water
+             END IF
+        END FUCNTION
+
+
+    Washing dishes;
+
+        FUNCTION
+            IF teenagers in the home THEN
+                call teenagers to do the dishes
+            ELSE 
+                TURN water ON
+                GRAB soap and sponge
+                POUR soap on sponge
+                WHILE there is dirty dishes
+                    SCRUB dishes
+                    RINSE dishes
+                    PLACE clean dishes on drying rack
+                END WHILE
+                RINSE HANDS
+                TURN water OFF
+            END IF
+        END FUNCTION
+
+
+
+    A choice of your own. parallel parking
+        FUNCTION
+            IF the car is moving
+                pull up to one full car length infront of empty spot and come to full stop
+                put the car in reverse
+                Turn wheel 67 degrees towards sidewalk
+                WHILE  back wheels are not 4 inches from curb
+                    keep backing up slowly
+                END WHILE
+                straighten the wheel
+                Back up slowly until front wheels are straight with back wheels 4 inches from curb
+                come to full stop
+            END IF
+            Turn car off
+        END FUCNTION
+                
+
+
+
+
+2. As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
+
+    A:  -Ford Motor Company that took  Ransom Olds(Who invented the assembly line in 1901) idea and perfected it trough a decade to have the most effictient car assembly line.
+        -Walmart The balance between profit margin and employees unhapppiness to turn a profit while offering the lowest possible prices(or at least give the impression of it).
+        -Facebook  advertisement algorithm that can search trough millions of profiles to find a specific target audience for every product.( ad or random content). 
+
+3. Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
+
+    A:It should be fast, use the minimal number of operations possible take in consideration as many edge cases as possible to avoid erros while not sacrificing speed and memory use, but in some cases where precision is absolutely necesary(medical devices for example) then edge cases might be more relevant than speed.
+    
