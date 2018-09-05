@@ -1,0 +1,67 @@
+1. What is a real-life scenario that uses linear search?
+
+A: A grocey shopping list will  be a great example, as you go trough the store aisles you read trough the whole list to make sure you get every item in that aisle.
+
+2.What is a real-life scenario that uses binary search?
+
+A: The shelves at a book store, they are organized alphabetically so you can easily find the aithor you are looking for so you can usually lok to the left or right to easily find the book you want
+
+3.Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using linear search?
+
+A: It will take 7 iterations since G is in the 6th index
+
+4.Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using binary search?
+
+A: it will take 3 iterations the first to separate the lower and higher than D the second the lower and higher than F and the third to return G since is higher than F
+
+5.Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+
+A: Linear since is an unsorted collection.
+
+6.Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+
+A: binary since it will be faster since it wouldnt have to check every item.
+
+
+Programming Assignment:
+
+1.You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
+
+A:
+    function binarySearch(arr, target) {
+        let left = 0;
+        let right = arr.length - 1;
+
+        while (left <= right) {
+            const mid = Math.round((right - left) / 2) + left;
+            if (arr[mid] < target) {
+                left = mid + 1;
+            } else  if (arr[mid] > target) {
+                right = mid - 1;
+            }else{
+                return `${arr[mid]} is the ${mid + 1}rd word in the list.`;
+            }           
+        }
+        return `${target} is not in the list.`;
+    }
+
+var words = ["Aadvark", "Aeroplane", "Albatross", "Apple", "Bobcat", "Car", "Dinosaur", "Destiny"];
+
+console.log(binarySearch(words, "Albatross"));
+
+
+2.You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net the right fish.
+
+A:  
+    function findFish(fishArray, target){
+        for(var i = 0; i<fishArray.length; i++){
+            if (fishArray[i] === target.toLowerCase()) {
+                return `You found the ${fishArray[i]} in the tank.`
+            }
+        }
+        return  `The ${target} went to visit Nemo.`; 
+    }
+
+var tank = ["goldfish", "goldfish", "one fish", "two fish", "red fish", "blue fish", "white-spotted goldfish", "Nemo"];
+
+console.log(findFish(tank, "White-spotted goldFish"));
