@@ -1,0 +1,59 @@
+1.Write pseudocode for bubble sort.
+
+A:FUNCTION bubbleSort(collection)
+   REPEAT
+     SET swapped to false
+     FOR i = FIRST INDEX of collection to LAST INDEX of collection - 1
+       IF collection[i] > collection[i + 1] THEN
+         SET tmp to collection[i]
+         SET collection[i] to collection[i + 1]
+         SET collection[i + 1] to tmp
+         SET swapped to true
+       END IF
+     END FOR
+   UNTIL swapped is FALSE
+   RETURN collection
+ END FUNCTION
+
+2.Write pseudocode for quicksort.
+
+A: FUNCTION quickSort(collection, left, right)
+  SET left to index 0
+  SET right to index of collection length -1
+  IF left < right
+	SET pivot to right
+	SET partitionIndex to partition WITH collection, pivot, left, right
+        CALL quickSort WITH collection, left, partitionIndex - 1
+        CALL quickSort WITH collection, partitionIndex + 1, right
+   ELSE
+        RETURN collection
+    END IF
+END FUNCTION
+
+FUNCTION partition(collection, pivot, left, right)
+    SET pivotValue to collection[pivot]
+    SET partitionIndex to left
+    FOR i = left to right of collection
+        IF collection[i] < pivotValue THEN
+        CALL swap WITH collection, i, partitionIndex
+        END IF
+    END FOR
+    CALL swap WITH collection, right, partitionIndex
+    RETURN partitionIndex
+END FUNCTION
+
+FUNCTION swap(collection, i, j)
+    SET temporary to collection[i]
+    SET collection[i] to collection[j]
+    SET collection[j] to temporary
+END FUNCTION
+
+3.We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
+
+A: Merge sort is more eifficent than others because it divides the data in smaller groups and  then  these are merged together in order in an exponential rate.
+
+Quick sort is the most efficient in general although it's worst case is worse than heapsort and merge sort this is rarely reached. after the first pivot the collection is divided in two and then each is sorted again against a pivot and again untill all elements are in order, but it does not need to compare each item with one another. It uses less memory than other algorithms.
+
+4.All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it works. What is the ideal input for bucket sort?
+
+A: Bucket sort is a comparison based sorting algorithm it create a number of empty "buckets" or lists  then inserts each element  of the collection into one of this buckets finally each element is sorted idividually. and returned to the collection in the appropiate place. the ideal input is data that can be distributed evenly between the buckets.
